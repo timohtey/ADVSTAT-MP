@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ public class MainFrame extends JFrame {
 	private JTextField iterations_textField;
 	private JTextField threshold_textField;
 	private JComboBox method_comboBox;
+	private JButton solve_button;
 	
 	public MainFrame() {
 		initializeComponents();
@@ -77,7 +79,7 @@ public class MainFrame extends JFrame {
 		lblMethod.setBounds(389, 420, 46, 14);
 		getContentPane().add(lblMethod);
 		
-		JComboBox method_comboBox = new JComboBox();
+		method_comboBox = new JComboBox();
 		method_comboBox.addItem("Bisection Method");
 		method_comboBox.addItem("Regula Falsi Method");
 		method_comboBox.addItem("Newton's Method");
@@ -85,7 +87,7 @@ public class MainFrame extends JFrame {
 		method_comboBox.setBounds(445, 417, 137, 20);
 		getContentPane().add(method_comboBox);
 		
-		JButton solve_button = new JButton("Solve Root");
+		solve_button = new JButton("Solve Root");
 		solve_button.setBounds(462, 516, 120, 23);
 		getContentPane().add(solve_button);
 		
@@ -101,12 +103,30 @@ public class MainFrame extends JFrame {
 		getContentPane().add(graphPanel);
 	}
 
-	public String intervalA(){
-		return polynomial_textField.getText();
+	public void getPolynomial(ArrayList<Integer> coefficient, ArrayList<Integer> powers){
+		String polynomial = polynomial_textField.getText();
+		boolean negative = false;
+		int j = 0;
+		for(int i = 0; i<polynomial.length(); i++){
+			if(polynomial.charAt(i) != ' ' && polynomial.charAt(i) != '-'){
+				System.out.println(i + ": " + polynomial.charAt(i));
+				if(j%2 == 0){
+					if(negative == true){
+						coefficient.add(Integer.parseInt(polynomial.charAt(i)+"")*-1);
+						negative = false;
+					} else coefficient.add(Integer.parseInt(polynomial.charAt(i)+""));
+				} else powers.add(Integer.parseInt(polynomial.charAt(i)+""));
+				j++;
+			} else if(polynomial.charAt(i) == '-'){
+				negative = true;
+			}
+		}
 	}
-	
-	public int intervalB(){
+	public int intervalA(){
 		return Integer.parseInt(intervalA_textField.getText());
+	}
+	public int intervalB(){
+		return Integer.parseInt(intervalB_textField.getText());
 	}
 	
 	public int getIterations(){
@@ -133,4 +153,7 @@ public class MainFrame extends JFrame {
 		this.method_comboBox = method_comboBox;
 	}
 	
+	public void addSolveListener(ActionListener listener){
+		solve_button.addActionListener(listener);
+	}
 }

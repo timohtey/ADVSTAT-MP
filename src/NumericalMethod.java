@@ -19,6 +19,22 @@ public class NumericalMethod {
 		this.x1 = x1;
 	}
 	
+	public void setCoefficients(ArrayList<Integer> coefficients){
+		this.coefficients = coefficients;
+	}
+	
+	public void setPowers(ArrayList<Integer> powers){
+		this.powers = powers;
+	}
+	
+	public void setX0(double x0){
+		this.x0 = x0;
+	}
+	
+	public void setX1(double x1){
+		this.x1 = x1;
+	}
+	
 	public void getBisection(){
 		
 	}
@@ -44,7 +60,11 @@ public class NumericalMethod {
 	private double function(double x) {
 		double answer = 0;
 		for(int i = 0; i<powers.size(); i++){
-			answer += coefficients.get(i) * Math.pow(x, powers.get(i));
+			if(powers.get(i) != 0){
+				answer += coefficients.get(i) * Math.pow(x, powers.get(i));
+			} else {
+				answer += coefficients.get(i);
+			}
 		}
 		return answer;
 	}
