@@ -117,25 +117,40 @@ public class MainFrame extends JFrame {
 		getContentPane().add(graphPanel);
 	}
 
-	public void getPolynomial(ArrayList<Integer> coefficient, ArrayList<Integer> powers){
+	public String getPolynomial(ArrayList<Integer> coefficient, ArrayList<Integer> powers){
 		String polynomial = polynomial_textField.getText();
 		boolean negative = false;
-		int j = 0;
-		for(int i = 0; i<polynomial.length(); i++){
-			if(polynomial.charAt(i) != ' ' && polynomial.charAt(i) != '-'){
-				if(j%2 == 0){
-					if(negative == true){
-						coefficient.add(Integer.parseInt(polynomial.charAt(i)+"")*-1);
-						negative = false;
-					} else coefficient.add(Integer.parseInt(polynomial.charAt(i)+""));
-				} else powers.add(Integer.parseInt(polynomial.charAt(i)+""));
-				j++;
-			} else if(polynomial.charAt(i) == '-'){
-				negative = true;
+		if(polynomial.equals("") == false){
+			int j = 0;
+			for(int i = 0; i<polynomial.length(); i++){
+				if(polynomial.charAt(i) != ' ' && polynomial.charAt(i) != '-'){
+					if(j%2 == 0){
+						if(negative == true){
+							coefficient.add(Integer.parseInt(polynomial.charAt(i)+"")*-1);
+							negative = false;
+						} else coefficient.add(Integer.parseInt(polynomial.charAt(i)+""));
+					} else powers.add(Integer.parseInt(polynomial.charAt(i)+""));
+					j++;
+				} else if(polynomial.charAt(i) == '-'){
+					negative = true;
+				}
 			}
 		}
+		
+		return polynomial;
 	}
 	
+	public JTextField polynomial_textField(){
+		return polynomial_textField;
+	}
+	
+	public JTextField intervalA_textField(){
+		return intervalA_textField;
+	}
+	
+	public JTextField intervalB_textField(){
+		return intervalB_textField;
+	}
 	public JTextField iterations_textField(){
 		return iterations_textField;
 	}
@@ -145,11 +160,19 @@ public class MainFrame extends JFrame {
 	}
 	
 	public int intervalA(){
-		return Integer.parseInt(intervalA_textField.getText());
+		int intervalA = 0;
+		if(intervalA_textField.getText().equals("") == false){
+			intervalA = Integer.parseInt(intervalA_textField.getText());
+		}
+		return intervalA;
 	}
 	
 	public int intervalB(){
-		return Integer.parseInt(intervalB_textField.getText());
+		int intervalB = 0;
+		if(intervalB_textField.getText().equals("") == false){
+			intervalB = Integer.parseInt(intervalB_textField.getText());
+		}
+		return intervalB;
 	}
 	
 	public int getIterations(){

@@ -22,7 +22,26 @@ public class Controller {
 			ArrayList<Integer> powers = new ArrayList<Integer>();
 			ArrayList<Double> roots = new ArrayList<Double>();
 			
-			view.getPolynomial(coefficients, powers);
+			int count = 0;
+			if(view.getPolynomial(coefficients, powers).equals("")){
+				view.polynomial_textField().setBackground(Color.RED);
+				count++;
+			} if(view.intervalA() == 0){
+				view.intervalA_textField().setBackground(Color.RED);
+				count++;
+			} if(view.intervalB() == 0){
+				view.intervalB_textField().setBackground(Color.RED);
+				count++;
+			} if(view.getIterations() == 0 && view.getThreshold() == 0){
+				view.iterations_textField().setBackground(Color.RED);
+				view.threshold_textField().setBackground(Color.RED);
+				count++;
+			}
+			
+			if(count != 0){
+				JOptionPane.showMessageDialog (null, "Complete the fields!", "Error", JOptionPane.WARNING_MESSAGE);
+			}
+			
 			model.setCoefficients(coefficients);
 			model.setPowers(powers);
 			model.setX0(view.intervalA());
@@ -30,24 +49,29 @@ public class Controller {
 			
 			int type = 0;
 			double value = 0;
-			boolean correct = true;
+			boolean correct = false;
 			
-			if(view.getIterations() != 0 && view.getThreshold() !=0){
-				view.iterations_textField().setBackground(Color.RED);
-				view.threshold_textField().setBackground(Color.RED);
-				JOptionPane.showMessageDialog (null, "Choose only one!", "Error", JOptionPane.WARNING_MESSAGE);
-				correct = false;
-			} else if(view.getIterations() != 0){
-				type = 1;
-				value = view.getIterations();
-				correct = true;
-			} else if(view.getThreshold() != 0){
-				type = 2;
-				value = view.getThreshold();
-				correct = true;
+			if(count == 0){
+				if(view.getIterations() != 0 && view.getThreshold() !=0){
+					view.iterations_textField().setBackground(Color.RED);
+					view.threshold_textField().setBackground(Color.RED);
+					JOptionPane.showMessageDialog (null, "Choose only one!", "Error", JOptionPane.WARNING_MESSAGE);
+					correct = false;
+				} else if(view.getIterations() != 0){
+					type = 1;
+					value = view.getIterations();
+					correct = true;
+				} else if(view.getThreshold() != 0){
+					type = 2;
+					value = view.getThreshold();
+					correct = true;
+				}
 			}
 			
 			if(correct){
+				view.polynomial_textField().setBackground(Color.WHITE);
+				view.intervalA_textField().setBackground(Color.WHITE);
+				view.intervalB_textField().setBackground(Color.WHITE);
 				view.iterations_textField().setBackground(Color.WHITE);
 				view.threshold_textField().setBackground(Color.WHITE);
 				

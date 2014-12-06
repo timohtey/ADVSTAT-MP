@@ -46,6 +46,7 @@ public class NumericalMethod {
 		 * IF TYPE = 1; THE USER CHOSE ITERATION
 		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
 		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
+		 * [x0, x1]
 		 */
 		return roots;
 	}
@@ -57,6 +58,7 @@ public class NumericalMethod {
 		 * IF TYPE = 1; THE USER CHOSE ITERATION
 		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
 		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
+		 * [x0, x1]
 		 */
 		return roots;
 	}
@@ -68,6 +70,7 @@ public class NumericalMethod {
 		 * IF TYPE = 1; THE USER CHOSE ITERATION
 		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
 		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
+		 * Use x0
 		 */
 		return roots;
 	}
