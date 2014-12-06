@@ -95,6 +95,47 @@ public class NumericalMethod {
 		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
 		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
+		
+		double a = function(x0);
+		double b = function(x1);
+		double c = 0;
+		double next = 0;
+		
+		roots = new ArrayList<Double>();
+		roots.add(x0);
+		roots.add(x1);
+		
+		if (type == 1) {
+			for (int i = 0; i < value; i++) {
+				c = ((x0 * b) - (x1 * a)) / (b - a);
+				roots.add(c);
+				
+				System.out.println("a: " + x0);
+				System.out.println("b: " + x1);
+				System.out.println("f(a): " + a);
+				System.out.println("f(b): " + b);
+				System.out.println("c " + c);
+				next = a * function(c);
+				if (next <= 0) 
+					b = c;
+				else
+					a = c;
+			}
+		}
+		
+		else if (type == 2) {
+			do {
+				c = ((x0 * b) - (x1 * a)) / (b - a);
+				roots.add(c);
+				
+				next = a * function(c);
+				if (next <= 0) 
+					b = c;
+				else
+					a = c;
+			} while (c <= value);
+		}
+		
 		return roots;
 	}
 	

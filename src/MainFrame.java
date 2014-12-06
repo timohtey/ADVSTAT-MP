@@ -104,6 +104,7 @@ public class MainFrame extends JFrame {
 		
 		textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
+		textArea.setEditable(false);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -162,18 +163,18 @@ public class MainFrame extends JFrame {
 		return threshold_textField;
 	}
 	
-	public int intervalA(){
-		int intervalA = 0;
+	public float intervalA(){
+		float intervalA = 0;
 		if(intervalA_textField.getText().equals("") == false){
-			intervalA = Integer.parseInt(intervalA_textField.getText());
+			intervalA = Float.parseFloat(intervalA_textField.getText());
 		}
 		return intervalA;
 	}
 	
-	public int intervalB(){
-		int intervalB = 0;
+	public float intervalB(){
+		float intervalB = 0;
 		if(intervalB_textField.getText().equals("") == false){
-			intervalB = Integer.parseInt(intervalB_textField.getText());
+			intervalB = Float.parseFloat(intervalB_textField.getText());
 		}
 		return intervalB;
 	}
