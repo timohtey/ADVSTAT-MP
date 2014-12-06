@@ -8,7 +8,11 @@ public class NumericalMethod {
 	private double x0;
 	private double x1;
 	public NumericalMethod(){
-		
+		this.roots = new ArrayList<Double>();
+		this.coefficients = new ArrayList<Integer>();
+		this.powers = new ArrayList<Integer>();
+		this.x0 = 0;
+		this.x1 = 0;
 	}
 	
 	public NumericalMethod(ArrayList<Integer> coefficients, ArrayList<Integer> powers, double x0, double x1){
@@ -35,26 +39,64 @@ public class NumericalMethod {
 		this.x1 = x1;
 	}
 	
-	public void getBisection(){
-		
+	public ArrayList<Double> getBisection(int type, double value){
+		/**
+		 * @CHELSEA
+		 * ADD BISECTION METHOD CODE HERE
+		 * IF TYPE = 1; THE USER CHOSE ITERATION
+		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
+		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
+		 */
+		return roots;
 	}
 	
-	public void getRegulaFalsi(){
-		
+	public ArrayList<Double> getRegulaFalsi(int type, double value){
+		/**
+		 * @RIO
+		 * ADD REGULA FALSI METHOD CODE HERE
+		 * IF TYPE = 1; THE USER CHOSE ITERATION
+		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
+		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
+		 */
+		return roots;
 	}
 	
-	public void getNewton(){
-		
+	public ArrayList<Double> getNewton(int type, double value){
+		/**
+		 * @PAULETTE
+		 * ADD NEWTON'S METHOD CODE HERE
+		 * IF TYPE = 1; THE USER CHOSE ITERATION
+		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
+		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
+		 */
+		return roots;
 	}
 	
-	public void getSecant(){
+	public ArrayList<Double> getSecant(int type, double value){
 		double secant = 0;
-		for(int i = 0; i</*threshold or iterations*/0; i++){
-			secant = x1 - ( (function(x1)*(x1 - x0))/(function(x1)-function(x0)));
+		roots = new ArrayList<Double>();
+		roots.add(x0);
+		roots.add(x1);
+		
+		if(type == 1){
+			for(int i = 0; i<value; i++){
+				secant = x1 - ((function(x1)*(x1 - x0))/(function(x1)-function(x0)));
+				roots.add(secant);
+				x0 = x1;
+				x1 = secant;
+			}
+		} else if(type == 2){
+			for(int i = 0; secant<=value; i++){
+				secant = x1 - ((function(x1)*(x1 - x0))/(function(x1)-function(x0)));
+				roots.add(secant);
+				x0 = x1;
+				x1 = secant;
+			}
+			secant = x1 - ((function(x1)*(x1 - x0))/(function(x1)-function(x0)));
 			roots.add(secant);
-			x0 = x1;
-			x1 = secant;
 		}
+	
+		return roots;
 	}
 
 	private double function(double x) {

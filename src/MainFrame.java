@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 
 public class MainFrame extends JFrame {
@@ -18,6 +20,7 @@ public class MainFrame extends JFrame {
 	private JTextField threshold_textField;
 	private JComboBox method_comboBox;
 	private JButton solve_button;
+	private JTextArea textArea;
 	
 	public MainFrame() {
 		initializeComponents();
@@ -31,52 +34,52 @@ public class MainFrame extends JFrame {
 		this.setResizable(false);
 		
 		JLabel lblPolynomial = new JLabel("Polynomial:");
-		lblPolynomial.setBounds(85, 420, 72, 14);
+		lblPolynomial.setBounds(10, 429, 72, 14);
 		getContentPane().add(lblPolynomial);
 		
 		polynomial_textField = new JTextField();
-		polynomial_textField.setBounds(156, 420, 137, 20);
+		polynomial_textField.setBounds(81, 429, 137, 20);
 		getContentPane().add(polynomial_textField);
 		polynomial_textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("x0:");
-		lblNewLabel.setBounds(85, 445, 72, 14);
+		lblNewLabel.setBounds(10, 454, 72, 14);
 		getContentPane().add(lblNewLabel);
 		
 		intervalA_textField = new JTextField();
-		intervalA_textField.setBounds(156, 445, 137, 20);
+		intervalA_textField.setBounds(81, 454, 137, 20);
 		getContentPane().add(intervalA_textField);
 		intervalA_textField.setColumns(10);
 		
 		JLabel lblIntervalB = new JLabel("x1:");
-		lblIntervalB.setBounds(85, 470, 60, 14);
+		lblIntervalB.setBounds(10, 479, 60, 14);
 		getContentPane().add(lblIntervalB);
 		
 		intervalB_textField = new JTextField();
-		intervalB_textField.setBounds(156, 470, 137, 20);
+		intervalB_textField.setBounds(81, 479, 137, 20);
 		getContentPane().add(intervalB_textField);
 		intervalB_textField.setColumns(10);
 		
 		JLabel lblIterations = new JLabel("Iterations:");
-		lblIterations.setBounds(85, 495, 60, 14);
+		lblIterations.setBounds(10, 504, 60, 14);
 		getContentPane().add(lblIterations);
 		
 		iterations_textField = new JTextField();
-		iterations_textField.setBounds(156, 495, 137, 20);
+		iterations_textField.setBounds(81, 504, 137, 20);
 		getContentPane().add(iterations_textField);
 		iterations_textField.setColumns(10);
 		
 		JLabel lblThreshold = new JLabel("Threshold:");
-		lblThreshold.setBounds(85, 520, 60, 14);
+		lblThreshold.setBounds(10, 529, 60, 14);
 		getContentPane().add(lblThreshold);
 		
 		threshold_textField = new JTextField();
-		threshold_textField.setBounds(156, 520, 137, 20);
+		threshold_textField.setBounds(81, 529, 137, 20);
 		getContentPane().add(threshold_textField);
 		threshold_textField.setColumns(10);
 		
 		JLabel lblMethod = new JLabel("Method:");
-		lblMethod.setBounds(389, 420, 46, 14);
+		lblMethod.setBounds(228, 429, 46, 14);
 		getContentPane().add(lblMethod);
 		
 		method_comboBox = new JComboBox();
@@ -84,12 +87,23 @@ public class MainFrame extends JFrame {
 		method_comboBox.addItem("Regula Falsi Method");
 		method_comboBox.addItem("Newton's Method");
 		method_comboBox.addItem("Secant Method");
-		method_comboBox.setBounds(445, 417, 137, 20);
+		method_comboBox.setBounds(274, 426, 137, 20);
 		getContentPane().add(method_comboBox);
 		
 		solve_button = new JButton("Solve Root");
-		solve_button.setBounds(462, 516, 120, 23);
+		solve_button.setBounds(274, 453, 137, 23);
 		getContentPane().add(solve_button);
+		
+		JLabel lblRootValues = new JLabel("Root Values:");
+		lblRootValues.setBounds(421, 429, 82, 14);
+		getContentPane().add(lblRootValues);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(421, 454, 229, 95);
+		getContentPane().add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -109,7 +123,6 @@ public class MainFrame extends JFrame {
 		int j = 0;
 		for(int i = 0; i<polynomial.length(); i++){
 			if(polynomial.charAt(i) != ' ' && polynomial.charAt(i) != '-'){
-				System.out.println(i + ": " + polynomial.charAt(i));
 				if(j%2 == 0){
 					if(negative == true){
 						coefficient.add(Integer.parseInt(polynomial.charAt(i)+"")*-1);
@@ -122,19 +135,37 @@ public class MainFrame extends JFrame {
 			}
 		}
 	}
+	
+	public JTextField iterations_textField(){
+		return iterations_textField;
+	}
+	
+	public JTextField threshold_textField(){
+		return threshold_textField;
+	}
+	
 	public int intervalA(){
 		return Integer.parseInt(intervalA_textField.getText());
 	}
+	
 	public int intervalB(){
 		return Integer.parseInt(intervalB_textField.getText());
 	}
 	
 	public int getIterations(){
-		return Integer.parseInt(iterations_textField.getText());
+		int iteration = 0;
+		if(iterations_textField.getText().equals("") == false){
+			iteration = Integer.parseInt(iterations_textField.getText());
+		}
+		return iteration;
 	}
 	
-	public int getThreshold(){
-		return Integer.parseInt(threshold_textField.getText());
+	public double getThreshold(){
+		double threshold = 0;
+		if(threshold_textField.getText().equals("") == false){
+			threshold = Double.parseDouble(threshold_textField.getText());
+		}
+		return threshold;
 	}
 
 	public int getMethod_comboBox() {
@@ -147,6 +178,10 @@ public class MainFrame extends JFrame {
 			case "Secant Method": choice = 4; break;
 		}
 		return choice;
+	}
+	
+	public JTextArea getTextArea(){
+		return textArea;
 	}
 
 	public void setMethod_comboBox(JComboBox method_comboBox) {
