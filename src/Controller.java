@@ -76,9 +76,9 @@ public class Controller {
 				view.threshold_textField().setBackground(Color.WHITE);
 				
 				switch(view.getMethod_comboBox()){
-					case 1: model.getBisection(type, value); break;
-					case 2: model.getRegulaFalsi(type, value); break;
-					case 3: model.getNewton(type, value); break;
+					case 1: roots = model.getBisection(type, value); break;
+					case 2: roots = model.getRegulaFalsi(type, value); break;
+					case 3: roots = model.getNewton(type, value); break;
 					case 4: roots = model.getSecant(type, value); break;
 				}
 			}

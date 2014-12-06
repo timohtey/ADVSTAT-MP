@@ -47,6 +47,8 @@ public class NumericalMethod {
 		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
 		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
 		 * [x0, x1]
+		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
+		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
 		return roots;
 	}
@@ -59,6 +61,8 @@ public class NumericalMethod {
 		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
 		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
 		 * [x0, x1]
+		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
+		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
 		return roots;
 	}
@@ -71,6 +75,8 @@ public class NumericalMethod {
 		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
 		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
 		 * Use x0
+		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
+		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
 		return roots;
 	}
