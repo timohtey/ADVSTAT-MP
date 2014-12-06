@@ -15,6 +15,7 @@ public class MainFrame extends JFrame {
 	private JTextField intervalB_textField;
 	private JTextField iterations_textField;
 	private JTextField threshold_textField;
+	private JComboBox method_comboBox;
 	
 	public MainFrame() {
 		initializeComponents();
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame {
 		getContentPane().add(polynomial_textField);
 		polynomial_textField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Interval A:");
+		JLabel lblNewLabel = new JLabel("x0:");
 		lblNewLabel.setBounds(85, 445, 72, 14);
 		getContentPane().add(lblNewLabel);
 		
@@ -45,7 +46,7 @@ public class MainFrame extends JFrame {
 		getContentPane().add(intervalA_textField);
 		intervalA_textField.setColumns(10);
 		
-		JLabel lblIntervalB = new JLabel("Interval B:");
+		JLabel lblIntervalB = new JLabel("x1:");
 		lblIntervalB.setBounds(85, 470, 60, 14);
 		getContentPane().add(lblIntervalB);
 		
@@ -114,6 +115,22 @@ public class MainFrame extends JFrame {
 	
 	public int getThreshold(){
 		return Integer.parseInt(threshold_textField.getText());
+	}
+
+	public int getMethod_comboBox() {
+		String method = method_comboBox.getSelectedItem().toString();
+		int choice = 0;
+		switch(method){
+			case "Bisection Method": choice = 1; break;
+			case "Regula Falsi Method": choice = 2; break;
+			case "Newton's Method": choice = 3; break;
+			case "Secant Method": choice = 4; break;
+		}
+		return choice;
+	}
+
+	public void setMethod_comboBox(JComboBox method_comboBox) {
+		this.method_comboBox = method_comboBox;
 	}
 	
 }
