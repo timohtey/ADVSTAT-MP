@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 	private BarGraphPanel graphPanel;
 	private JTextField polynomial_textField;
@@ -18,20 +19,23 @@ public class MainFrame extends JFrame {
 	private JTextField intervalB_textField;
 	private JTextField iterations_textField;
 	private JTextField threshold_textField;
-	private JComboBox method_comboBox;
+	private JComboBox<String> method_comboBox;
 	private JButton solve_button;
 	private JTextArea textArea;
 	
-	public MainFrame() {
+	public MainFrame() {		
 		initializeComponents();
 		initializeFrame();
 	}
 	
 	public void initializeFrame() {
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		this.getContentPane().setPreferredSize(new Dimension(660, 560));
 		this.setVisible(true);
 		this.setResizable(false);
+		this.pack();
+		this.setLocationRelativeTo(null);
 		
 		JLabel lblPolynomial = new JLabel("Polynomial:");
 		lblPolynomial.setBounds(10, 429, 72, 14);
@@ -82,7 +86,7 @@ public class MainFrame extends JFrame {
 		lblMethod.setBounds(228, 429, 46, 14);
 		getContentPane().add(lblMethod);
 		
-		method_comboBox = new JComboBox();
+		method_comboBox = new JComboBox<String>();
 		method_comboBox.addItem("Bisection Method");
 		method_comboBox.addItem("Regula Falsi Method");
 		method_comboBox.addItem("Newton's Method");
@@ -103,12 +107,10 @@ public class MainFrame extends JFrame {
 		getContentPane().add(scrollPane);
 		
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		//this.setResizable(false);
 		this.pack();
 	}
 	
@@ -211,7 +213,7 @@ public class MainFrame extends JFrame {
 		return textArea;
 	}
 
-	public void setMethod_comboBox(JComboBox method_comboBox) {
+	public void setMethod_comboBox(JComboBox<String> method_comboBox) {
 		this.method_comboBox = method_comboBox;
 	}
 	
