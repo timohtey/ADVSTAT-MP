@@ -140,6 +140,7 @@ public class NumericalMethod {
 	}
 	
 	public ArrayList<Double> getNewton(int type, double value){
+		double newton = x0;
 		/**
 		 * @PAULETTE
 		 * ADD NEWTON'S METHOD CODE HERE
@@ -150,6 +151,20 @@ public class NumericalMethod {
 		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
 		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
+		
+		if(type == 1){
+			for(int i=0; i<value; i++){
+				newton = newton-(function(newton)/derivative(newton));
+				roots.add(newton);
+			}
+		}
+		else if(type == 2){
+			do{
+				newton = newton-(function(newton)/derivative(newton));
+				roots.add(newton);
+			}while(newton <= value);
+		}
+		
 		return roots;
 	}
 	
@@ -190,6 +205,33 @@ public class NumericalMethod {
 				answer += coefficients.get(i);
 			}
 		}
+		return answer;
+	}
+	
+	private double derivative(double x){
+		double answer = 0;
+		int holderCoef=0;
+		int holderPwr=0;
+		ArrayList<Integer> coef = new ArrayList<Integer>();
+		ArrayList<Integer> pwr = new ArrayList<Integer>();
+		
+		for(int j=0; j<powers.size(); j++){
+			if(powers.get(j)!=0){
+				holderCoef = powers.get(j)*coefficients.get(j);
+				holderPwr = powers.get(j)-1;
+				coef.add(holderCoef);
+				pwr.add(holderPwr);
+			}
+		}
+		
+		for(int i = 0; i<pwr.size(); i++){
+			if(pwr.get(i) != 0){
+				answer += coef.get(i) * Math.pow(x, pwr.get(i));
+			} else {
+				answer += coef.get(i);
+			}
+		}
+		
 		return answer;
 	}
 }
