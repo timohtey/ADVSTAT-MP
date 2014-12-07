@@ -29,7 +29,7 @@ public class Controller {
 			} if(view.intervalA() == 0){
 				view.intervalA_textField().setBackground(Color.RED);
 				count++;
-			} if(view.intervalB() == 0){
+			} if(view.intervalB() == 0 && view.getMethod_comboBox() != 3){
 				view.intervalB_textField().setBackground(Color.RED);
 				count++;
 			} if(view.getIterations() == 0 && view.getThreshold() == 0){
