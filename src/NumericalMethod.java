@@ -50,6 +50,46 @@ public class NumericalMethod {
 		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
 		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
+		double c = 0, xn = 0;
+		roots.add(x0);
+		roots.add(x1);
+		
+		if(type == 1){
+			
+			for(int i = 0; i<value; i++){
+				if(function(x0)*function(x1)>0){
+					c = (x0+x1)/2;
+					xn= function(c);
+					if(function(x0)*xn>0){
+						x0 = c;
+						roots.add(x0);
+					}
+					else if(function(x1)*xn>0){
+						x1 = c;
+						roots.add(x1);
+					}
+				}
+				
+			}
+		} else if(type == 2){
+			if(function(x0)*function(x1)>0){
+				do{
+					c = (x0+x1)/2;
+					xn= function(c);
+					if(function(x0)*xn>0){
+						x0 = c;
+						roots.add(x0);
+					}
+					else if(function(x1)*xn>0){
+						x1 = c;
+						roots.add(x1);
+					}
+					
+				}while(c>value);
+			}
+			
+		}
+	
 		return roots;
 	}
 	
@@ -81,6 +121,7 @@ public class NumericalMethod {
 		return roots;
 	}
 	
+
 	public ArrayList<Double> getSecant(int type, double value){
 		double secant = 0;
 		roots = new ArrayList<Double>();
