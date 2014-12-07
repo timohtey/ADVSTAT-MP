@@ -141,6 +141,7 @@ public class NumericalMethod {
 	
 	public ArrayList<Double> getNewton(int type, double value){
 		double newton = x0;
+		roots.add(newton);
 		/**
 		 * @PAULETTE
 		 * ADD NEWTON'S METHOD CODE HERE
@@ -162,7 +163,7 @@ public class NumericalMethod {
 			do{
 				newton = newton-(function(newton)/derivative(newton));
 				roots.add(newton);
-			}while(newton <= value);
+			}while(newton >= value);
 		}
 		
 		return roots;
