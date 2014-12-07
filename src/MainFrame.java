@@ -112,11 +112,14 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void initializeComponents() {
-		graphPanel = new BarGraphPanel(new ArrayList<Double>(), 0, 0);
-		graphPanel.setBounds(10, 11, 640, 395);
+		graphPanel = new BarGraphPanel(new ArrayList<Double>());
+		graphPanel.setBounds(0, 0, 660, 400);
 		getContentPane().add(graphPanel);
 	}
 
+	public BarGraphPanel getBarGraphPanel(){
+		return graphPanel;
+	}
 	public String getPolynomial(ArrayList<Integer> coefficient, ArrayList<Integer> powers){
 		String polynomial = polynomial_textField.getText();
 		boolean negative = false;
@@ -213,5 +216,12 @@ public class MainFrame extends JFrame {
 	
 	public void addSolveListener(ActionListener listener){
 		solve_button.addActionListener(listener);
+	}
+	
+	public void refresh(ArrayList<Double> roots){
+		graphPanel = new BarGraphPanel(roots);
+		getContentPane().add(graphPanel);
+		graphPanel.revalidate();
+		graphPanel.repaint();
 	}
 }

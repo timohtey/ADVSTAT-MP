@@ -40,17 +40,8 @@ public class NumericalMethod {
 	}
 	
 	public ArrayList<Double> getBisection(int type, double value){
-		/**
-		 * @CHELSEA
-		 * ADD BISECTION METHOD CODE HERE
-		 * IF TYPE = 1; THE USER CHOSE ITERATION
-		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
-		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
-		 * [x0, x1]
-		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
-		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
-		 */
 		double c = 0, xn = 0;
+		roots = new ArrayList<Double>();
 		roots.add(x0);
 		roots.add(x1);
 		

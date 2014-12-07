@@ -16,28 +16,28 @@ public class BarGraphPanel extends JPanel {
 	private JFreeChart barGraph;
 	private CategoryPlot categoryPlot;
 	private ChartPanel chartPanel;
-	public BarGraphPanel(ArrayList<Double> probabilities, int x1, int x2){
+	ArrayList<Double> roots = new ArrayList<Double>();
+	
+	public BarGraphPanel(ArrayList<Double> roots){
 		dataSet = new DefaultCategoryDataset();
+		int j = 0;
+		for(int i = 0; i<roots.size(); i++){
+			dataSet.setValue(roots.get(i), "0", ""+j);
+			System.out.println(roots.get(i));
+			j++;
+		};
 		
-		int j = x1;
-		if(x2 != 0){
-			for(int i =0; i<probabilities.size();i++){
-				if(probabilities.get(i) <0){
-					dataSet.setValue(0, "0", "f("+j+")");
-				}
-				else dataSet.setValue(probabilities.get(i), "0", "f("+j+")");		
-				j++;
-			}
-		}
-		else dataSet.setValue(x1,"0","f("+x1+")");
-		
-		barGraph = ChartFactory.createBarChart("Numerical Methods", "", "", dataSet, PlotOrientation.VERTICAL, false, true, false);
+		barGraph = ChartFactory.createLineChart("Numerical Methods", "", "", dataSet, PlotOrientation.VERTICAL, true, true, true);
 		categoryPlot = barGraph.getCategoryPlot();
 		categoryPlot.setRangeGridlinePaint(Color.BLACK);
 		chartPanel = new ChartPanel(barGraph);
 		this.setLayout(new BorderLayout());
-		this.setBounds(0, 0, 600, 400);
+		this.setBounds(0, 0, 660, 400);
 		this.setVisible(true);
 		this.add(chartPanel);
+	}
+	
+	public void setRoots(ArrayList<Double> roots){
+		this.roots = roots;
 	}
 }

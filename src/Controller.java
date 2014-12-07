@@ -90,6 +90,7 @@ public class Controller {
 			}
 
 			view.getTextArea().setText(textAreaTxt);
+			view.refresh(roots);
 		}
 	}
 }
