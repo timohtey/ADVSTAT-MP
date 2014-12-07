@@ -50,37 +50,35 @@ public class NumericalMethod {
 		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
 		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
-		double c = 0, xn = 0;
+		double c=0;
+		roots = new ArrayList<Double>();
 		roots.add(x0);
 		roots.add(x1);
 		
 		if(type == 1){
-			
 			for(int i = 0; i<value; i++){
-				if(function(x0)*function(x1)>0){
+				if((function(x0)*function(x1))!=0){
+					
 					c = (x0+x1)/2;
-					xn= function(c);
-					if(function(x0)*xn>0){
+					if((function(x0))*(function(c))>0){
 						x0 = c;
 						roots.add(x0);
-					}
-					else if(function(x1)*xn>0){
+					}else {	
 						x1 = c;
 						roots.add(x1);
 					}
-				}
-				
+				}	
 			}
 		} else if(type == 2){
-			if(function(x0)*function(x1)>0){
+			if(function(x0)*function(x1)!=0){
 				do{
 					c = (x0+x1)/2;
-					xn= function(c);
-					if(function(x0)*xn>0){
+					
+					if(function(x0)*function(c)>0){
 						x0 = c;
 						roots.add(x0);
 					}
-					else if(function(x1)*xn>0){
+					else if(function(x1)*function(c)>0){
 						x1 = c;
 						roots.add(x1);
 					}
@@ -151,13 +149,14 @@ public class NumericalMethod {
 
 	private double function(double x) {
 		double answer = 0;
-		for(int i = 0; i<powers.size(); i++){
+		for(int i = 0; i<powers.size()/2; i++){
 			if(powers.get(i) != 0){
 				answer += coefficients.get(i) * Math.pow(x, powers.get(i));
 			} else {
 				answer += coefficients.get(i);
 			}
 		}
+		System.out.println("answer:"+answer);
 		return answer;
 	}
 }
