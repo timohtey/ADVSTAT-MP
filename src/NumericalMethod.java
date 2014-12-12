@@ -200,7 +200,6 @@ public class NumericalMethod {
 				x1 = secant;
 			}
 			secant = x1 - ((function(x1)*(x1 - x0))/(function(x1)-function(x0)));
-			roots.add(secant);
 		}
 	
 		return roots;
