@@ -54,7 +54,6 @@ public class NumericalMethod {
 		double c=0;
 		roots = new ArrayList<Double>();
 		roots.add(x0);
-		roots.add(x1);
 		
 		if(type == 1){
 			for(int i = 0; i<value; i++){
@@ -111,7 +110,6 @@ public class NumericalMethod {
 		
 		roots = new ArrayList<Double>();
 		roots.add(x0);
-		roots.add(x1);
 		
 		if (type == 1) {
 			for (int i = 0; i < value; i++) {
@@ -183,7 +181,6 @@ public class NumericalMethod {
 		double secant = 0;
 		roots = new ArrayList<Double>();
 		roots.add(x0);
-		roots.add(x1);
 		
 		if(type == 1){
 			for(int i = 0; i<value; i++){
