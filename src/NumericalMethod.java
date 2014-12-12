@@ -40,6 +40,7 @@ public class NumericalMethod {
 	}
 	
 	public ArrayList<Double> getBisection(int type, double value){
+
 		/**
 		 * @CHELSEA
 		 * ADD BISECTION METHOD CODE HERE
@@ -50,10 +51,7 @@ public class NumericalMethod {
 		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
 		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
-		//double c=0;
-
-		double c = 0, xn = 0;
-
+		double c=0;
 		roots = new ArrayList<Double>();
 		roots.add(x0);
 		roots.add(x1);
@@ -81,7 +79,7 @@ public class NumericalMethod {
 						x0 = c;
 						roots.add(x0);
 					}
-					else if(function(x1)*function(c)>0){
+					else{
 						x1 = c;
 						roots.add(x1);
 					}
