@@ -126,23 +126,42 @@ public class MainFrame extends JFrame {
 	public String getPolynomial(ArrayList<Integer> coefficient, ArrayList<Integer> powers){
 		String polynomial = polynomial_textField.getText();
 		boolean negative = false;
+		String number = new String();
 		if(polynomial.equals("") == false){
 			int j = 0;
 			for(int i = 0; i<polynomial.length(); i++){
+				System.out.println(j);
 				if(polynomial.charAt(i) != ' ' && polynomial.charAt(i) != '-'){
-					if(j%2 == 0){
-						if(negative == true){
-							coefficient.add(Integer.parseInt(polynomial.charAt(i)+"")*-1);
-							negative = false;
-						} else coefficient.add(Integer.parseInt(polynomial.charAt(i)+""));
-					} else powers.add(Integer.parseInt(polynomial.charAt(i)+""));
-					j++;
+					number = number + Character.toString(polynomial.charAt(i));
 				} else if(polynomial.charAt(i) == '-'){
 					negative = true;
+				} else if(polynomial.charAt(i) == ' '){
+					if(j%2 == 0){
+						if(negative == true){
+							coefficient.add(Integer.parseInt(number)*-1);
+							negative = false;
+							j++;
+						} else {
+							coefficient.add(Integer.parseInt(number));
+							j++;
+						}
+					} else{
+						powers.add(Integer.parseInt(number));
+						j++;
+					}
+					number = new String();
 				}
 			}
+			if(coefficient.size()!=powers.size() && j%2 != 0){
+				powers.add(Integer.parseInt(number));
+			}
+			
 		}
 		
+		/*for(int l=0; l<coefficient.size(); l++){
+			System.out.println("Coefficient " + l + ": " + coefficient.get(l));
+			System.out.println("Power " + l + ": " + powers.get(l));
+		}*/
 		return polynomial;
 	}
 	

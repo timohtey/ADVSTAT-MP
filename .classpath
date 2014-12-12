@@ -2,15 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/Users/fabs/Envs/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
-=======
+	<!--<classpathentry kind="lib" path="C:/Users/fabs/Envs/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
 	<classpathentry kind="lib" path="/Users/rio/rio/Downloads/jcommon-1.0.23/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="/Users/rio/rio/Downloads/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
->>>>>>> fd9082e6367ed8ed660b93ab67790c930e9efc20
+	<classpathentry kind="lib" path="/Users/rio/rio/Downloads/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>-->
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
->>>>>>> origin/master
 	<classpathentry kind="output" path="bin"/>
 </classpath>

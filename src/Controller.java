@@ -23,7 +23,7 @@ public class Controller {
 			ArrayList<Double> roots = new ArrayList<Double>();
 			
 			int count = 0;
-			if(view.getPolynomial(coefficients, powers).equals("") || view.getPolynomial(coefficients, powers).length() < 6){
+			if(view.getPolynomial(coefficients, powers).equals("")){
 				view.polynomial_textField().setBackground(Color.RED);
 				count++;
 			} if(view.intervalA() == 0){

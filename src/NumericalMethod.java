@@ -40,7 +40,6 @@ public class NumericalMethod {
 	}
 	
 	public ArrayList<Double> getBisection(int type, double value){
-<<<<<<< HEAD
 		/**
 		 * @CHELSEA
 		 * ADD BISECTION METHOD CODE HERE
@@ -51,10 +50,10 @@ public class NumericalMethod {
 		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
 		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
 		 */
-		double c=0;
-=======
+		//double c=0;
+
 		double c = 0, xn = 0;
->>>>>>> origin/master
+
 		roots = new ArrayList<Double>();
 		roots.add(x0);
 		roots.add(x1);
@@ -210,14 +209,13 @@ public class NumericalMethod {
 
 	private double function(double x) {
 		double answer = 0;
-		for(int i = 0; i<powers.size()/2; i++){
+		for(int i = 0; i<powers.size(); i++){
 			if(powers.get(i) != 0){
 				answer += coefficients.get(i) * Math.pow(x, powers.get(i));
 			} else {
 				answer += coefficients.get(i);
 			}
 		}
-		System.out.println("answer:"+answer);
 		return answer;
 	}
 	
@@ -244,7 +242,6 @@ public class NumericalMethod {
 				answer += coef.get(i);
 			}
 		}
-		
 		return answer;
 	}
 }
