@@ -149,6 +149,7 @@ public class NumericalMethod {
 	
 	public ArrayList<Double> getNewton(int type, double value){
 		double newton = x0;
+		roots = new ArrayList<Double>();
 		roots.add(newton);
 		/**
 		 * @PAULETTE
