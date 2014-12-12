@@ -113,32 +113,27 @@ public class NumericalMethod {
 		
 		if (type == 1) {
 			for (int i = 0; i < value; i++) {
-				c = ((x0 * b) - (x1 * a)) / (b - a);
+				c = x1 - ((function(x1)*(x1-x0))/(function(x1)-function(x0)));
 				roots.add(c);
 				
-				System.out.println("a: " + x0);
-				System.out.println("b: " + x1);
-				System.out.println("f(a): " + a);
-				System.out.println("f(b): " + b);
-				System.out.println("c " + c);
 				next = a * function(c);
 				if (next <= 0) 
-					b = c;
+					x1 = c;
 				else
-					a = c;
+					x0 = c;
 			}
 		}
 		
 		else if (type == 2) {
 			do {
-				c = ((x0 * b) - (x1 * a)) / (b - a);
+				c = x1 - ((function(x1)*(x1-x0))/(function(x1)-function(x0)));
 				roots.add(c);
 				
 				next = a * function(c);
 				if (next <= 0) 
-					b = c;
+					x1 = c;
 				else
-					a = c;
+					x0 = c;
 			} while (c <= value);
 		}
 		
