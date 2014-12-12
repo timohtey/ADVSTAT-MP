@@ -40,17 +40,6 @@ public class NumericalMethod {
 	}
 	
 	public ArrayList<Double> getBisection(int type, double value){
-
-		/**
-		 * @CHELSEA
-		 * ADD BISECTION METHOD CODE HERE
-		 * IF TYPE = 1; THE USER CHOSE ITERATION
-		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
-		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
-		 * [x0, x1]
-		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
-		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
-		 */
 		double c=0;
 		roots = new ArrayList<Double>();
 		roots.add(x0);
@@ -92,19 +81,7 @@ public class NumericalMethod {
 	}
 	
 	public ArrayList<Double> getRegulaFalsi(int type, double value){
-		/**
-		 * @RIO
-		 * ADD REGULA FALSI METHOD CODE HERE
-		 * IF TYPE = 1; THE USER CHOSE ITERATION
-		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
-		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
-		 * [x0, x1]
-		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
-		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
-		 */
-		
 		double a = function(x0);
-		double b = function(x1);
 		double c = 0;
 		double next = 0;
 		
@@ -117,10 +94,11 @@ public class NumericalMethod {
 				roots.add(c);
 				
 				next = a * function(c);
-				if (next <= 0) 
+				if (next <= 0){ 
 					x1 = c;
-				else
+				} else {
 					x0 = c;
+				}
 			}
 		}
 		
@@ -130,10 +108,11 @@ public class NumericalMethod {
 				roots.add(c);
 				
 				next = a * function(c);
-				if (next <= 0) 
+				if (next <= 0){ 
 					x1 = c;
-				else
+				} else {
 					x0 = c;
+				}
 			} while (c <= value);
 		}
 		
@@ -144,16 +123,6 @@ public class NumericalMethod {
 		double newton = x0;
 		roots = new ArrayList<Double>();
 		roots.add(newton);
-		/**
-		 * @PAULETTE
-		 * ADD NEWTON'S METHOD CODE HERE
-		 * IF TYPE = 1; THE USER CHOSE ITERATION
-		 * IF TYPE = 2; THE USER CHOSE THRESHOLD
-		 * USE FUNCTION(X) TO SUBSTITUTE THE VALUES TO THE POLYNOMIAL
-		 * Use x0
-		 * ADD GOTTEN VALUES TO ROOTS; roots.add(nakuhang_value)
-		 * ALREADY IMPLEMENTED DISPLAYING THE ROOTS
-		 */
 		
 		if(type == 1){
 			for(int i=0; i<value; i++){
