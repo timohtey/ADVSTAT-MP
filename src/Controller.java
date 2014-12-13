@@ -92,7 +92,7 @@ public class Controller {
 			}
 
 			view.getTextArea().setText(textAreaTxt);
-			view.refresh(roots, polyRoots);
+			view.refresh(roots, polyRoots, coefficients, powers);
 		}
 	}
 }

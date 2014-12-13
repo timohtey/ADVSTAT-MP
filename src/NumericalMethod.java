@@ -154,7 +154,7 @@ public class NumericalMethod {
 		
 		if(type == 1){
 			for(int i = 0; i<value; i++){
-				secant = y - ((function(y)*(y - x0))/(function(y)-function(x)));
+				secant = y - ((function(y)*(y - x))/(function(y)-function(x)));
 				roots.add(secant);
 				x = y;
 				y = secant;
@@ -166,7 +166,6 @@ public class NumericalMethod {
 				x = y;
 				y = secant;
 			}
-			secant = y - ((function(y)*(y - x))/(function(y)-function(x)));
 		}
 	
 		return roots;

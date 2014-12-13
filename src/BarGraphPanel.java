@@ -20,20 +20,24 @@ public class BarGraphPanel extends JPanel {
 	private ChartPanel chartPanel;
 	ArrayList<Double> polyRoots = new ArrayList<Double>();
 	ArrayList<Double> roots = new ArrayList<Double>();
-	private int dataSetIndex = 0;
+	ArrayList<Integer> coefficients = new ArrayList<Integer>();
+	ArrayList<Integer> powers = new ArrayList<Integer>();
 	
-	public BarGraphPanel(ArrayList<Double> roots, ArrayList<Double> polyRoots){
+	public BarGraphPanel(ArrayList<Double> roots, ArrayList<Double> polyRoots, ArrayList<Integer> coefficients, ArrayList<Integer> powers){
 		dataSet = new DefaultCategoryDataset();
 		dataSet2 = new DefaultCategoryDataset();
+		this.coefficients = coefficients;
+		this.powers = powers;
 		int j = 0, h = 0;
 		
 		for(int i = 0; i<polyRoots.size(); i++){
 			dataSet.setValue(polyRoots.get(i), "Polynomial", ""+h);
-			dataSet.setValue(roots.get(i), "Roots", ""+j);
+			dataSet.setValue(function(roots.get(j)), "Roots", ""+j);
+			if(j<roots.size()){
+				j++;
+			}
 			h++;
-			j++;
 		}
-		
 		
 		barGraph = ChartFactory.createLineChart("Numerical Methods", "", "", dataSet, PlotOrientation.VERTICAL, true, true, true);
 		categoryPlot = barGraph.getCategoryPlot();
@@ -43,19 +47,23 @@ public class BarGraphPanel extends JPanel {
 		this.setBounds(0, 0, 660, 400);
 		this.setVisible(true);
 		this.add(chartPanel);
-		chartPanel.zoomOutRange(1, 2);;
+		chartPanel.zoomOutRange(1, 2);
 		chartPanel.restoreAutoBounds();
-		
-//		if (dataSetIndex < 20) {
-//            dataSetIndex++;
-//            categoryPlot.setDataset(
-//                dataSetIndex, dataSet2);
-//            CategoryItemRenderer renderer = categoryPlot.getRenderer();
-//            categoryPlot.setRenderer(dataSetIndex, renderer);
-//        }
 	}
 	
 	public void setRoots(ArrayList<Double> roots){
 		this.roots = roots;
+	}
+	
+	private double function(double x) {
+		double answer = 0;
+		for(int i = 0; i<powers.size(); i++){
+			if(powers.get(i) != 0){
+				answer += coefficients.get(i) * Math.pow(x, powers.get(i));
+			} else {
+				answer += coefficients.get(i);
+			}
+		}
+		return answer;
 	}
 }
