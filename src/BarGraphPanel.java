@@ -28,13 +28,9 @@ public class BarGraphPanel extends JPanel {
 		int j = 0, h = 0;
 		
 		for(int i = 0; i<polyRoots.size(); i++){
-			dataSet2.setValue(polyRoots.get(i), "Polynomial", ""+h);
-			//System.out.println(polyRoots.get(i));
-			h++;
-		}
-		for(int i = 0; i<roots.size(); i++){
+			dataSet.setValue(polyRoots.get(i), "Polynomial", ""+h);
 			dataSet.setValue(roots.get(i), "Roots", ""+j);
-			//System.out.println(roots.get(i));
+			h++;
 			j++;
 		}
 		
@@ -50,13 +46,13 @@ public class BarGraphPanel extends JPanel {
 		chartPanel.zoomOutRange(1, 2);;
 		chartPanel.restoreAutoBounds();
 		
-		if (dataSetIndex < 20) {
-            dataSetIndex++;
-            categoryPlot.setDataset(
-                dataSetIndex, dataSet2);
-            CategoryItemRenderer renderer = categoryPlot.getRenderer();
-            categoryPlot.setRenderer(dataSetIndex, renderer);
-        }
+//		if (dataSetIndex < 20) {
+//            dataSetIndex++;
+//            categoryPlot.setDataset(
+//                dataSetIndex, dataSet2);
+//            CategoryItemRenderer renderer = categoryPlot.getRenderer();
+//            categoryPlot.setRenderer(dataSetIndex, renderer);
+//        }
 	}
 	
 	public void setRoots(ArrayList<Double> roots){
