@@ -115,7 +115,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void initializeComponents() {
-		graphPanel = new BarGraphPanel(new ArrayList<Double>());
+		graphPanel = new BarGraphPanel(new ArrayList<Double>(), new ArrayList<Double>());
 		graphPanel.setBounds(0, 0, 660, 400);
 		getContentPane().add(graphPanel);
 	}
@@ -240,8 +240,8 @@ public class MainFrame extends JFrame {
 		solve_button.addActionListener(listener);
 	}
 	
-	public void refresh(ArrayList<Double> roots){
-		graphPanel = new BarGraphPanel(roots);
+	public void refresh(ArrayList<Double> roots, ArrayList<Double> polyRoots){
+		graphPanel = new BarGraphPanel(roots, polyRoots);
 		getContentPane().add(graphPanel);
 		graphPanel.revalidate();
 		graphPanel.repaint();

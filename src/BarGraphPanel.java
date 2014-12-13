@@ -9,23 +9,35 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class BarGraphPanel extends JPanel {
 	private DefaultCategoryDataset dataSet;
+	private DefaultCategoryDataset dataSet2;
 	private JFreeChart barGraph;
 	private CategoryPlot categoryPlot;
 	private ChartPanel chartPanel;
+	ArrayList<Double> polyRoots = new ArrayList<Double>();
 	ArrayList<Double> roots = new ArrayList<Double>();
+	private int dataSetIndex = 0;
 	
-	public BarGraphPanel(ArrayList<Double> roots){
+	public BarGraphPanel(ArrayList<Double> roots, ArrayList<Double> polyRoots){
 		dataSet = new DefaultCategoryDataset();
-		int j = 0;
+		dataSet2 = new DefaultCategoryDataset();
+		int j = 0, h = 0;
+		
+		for(int i = 0; i<polyRoots.size(); i++){
+			dataSet2.setValue(polyRoots.get(i), "Polynomial", ""+h);
+			//System.out.println(polyRoots.get(i));
+			h++;
+		}
 		for(int i = 0; i<roots.size(); i++){
-			dataSet.setValue(roots.get(i), "0", ""+j);
-			System.out.println(roots.get(i));
+			dataSet.setValue(roots.get(i), "Roots", ""+j);
+			//System.out.println(roots.get(i));
 			j++;
-		};
+		}
+		
 		
 		barGraph = ChartFactory.createLineChart("Numerical Methods", "", "", dataSet, PlotOrientation.VERTICAL, true, true, true);
 		categoryPlot = barGraph.getCategoryPlot();
@@ -35,6 +47,16 @@ public class BarGraphPanel extends JPanel {
 		this.setBounds(0, 0, 660, 400);
 		this.setVisible(true);
 		this.add(chartPanel);
+		chartPanel.zoomOutRange(1, 2);;
+		chartPanel.restoreAutoBounds();
+		
+		if (dataSetIndex < 20) {
+            dataSetIndex++;
+            categoryPlot.setDataset(
+                dataSetIndex, dataSet2);
+            CategoryItemRenderer renderer = categoryPlot.getRenderer();
+            categoryPlot.setRenderer(dataSetIndex, renderer);
+        }
 	}
 	
 	public void setRoots(ArrayList<Double> roots){

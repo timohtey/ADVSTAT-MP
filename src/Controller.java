@@ -21,6 +21,7 @@ public class Controller {
 			ArrayList<Integer> coefficients = new ArrayList<Integer>();
 			ArrayList<Integer> powers = new ArrayList<Integer>();
 			ArrayList<Double> roots = new ArrayList<Double>();
+			ArrayList<Double> polyRoots = new ArrayList<Double>();
 			
 			int count = 0;
 			if(view.getPolynomial(coefficients, powers).equals("")){
@@ -81,6 +82,7 @@ public class Controller {
 					case 3: roots = model.getNewton(type, value); break;
 					case 4: roots = model.getSecant(type, value); break;
 				}
+				polyRoots = model.getPolyRoots(value);
 			}
 			
 			String textAreaTxt = "";
@@ -90,7 +92,7 @@ public class Controller {
 			}
 
 			view.getTextArea().setText(textAreaTxt);
-			view.refresh(roots);
+			view.refresh(roots, polyRoots);
 		}
 	}
 }

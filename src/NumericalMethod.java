@@ -43,33 +43,36 @@ public class NumericalMethod {
 		double c=0;
 		roots = new ArrayList<Double>();
 		roots.add(x0);
+		double x, y;
+		x = x0;
+		y = x1;
 		
 		if(type == 1){
 			for(int i = 0; i<value; i++){
-				if((function(x0)*function(x1))!=0){
+				if((function(x)*function(y))!=0){
 					
-					c = (x0+x1)/2;
-					if((function(x0))*(function(c))>0){
-						x0 = c;
-						roots.add(x0);
+					c = (x+y)/2;
+					if((function(x))*(function(c))>0){
+						x = c;
+						roots.add(x);
 					}else {	
-						x1 = c;
-						roots.add(x1);
+						y = c;
+						roots.add(y);
 					}
 				}	
 			}
 		} else if(type == 2){
-			if(function(x0)*function(x1)!=0){
+			if(function(x)*function(y)!=0){
 				do{
-					c = (x0+x1)/2;
+					c = (x+y)/2;
 					
-					if(function(x0)*function(c)>0){
-						x0 = c;
-						roots.add(x0);
+					if(function(x)*function(c)>0){
+						x = c;
+						roots.add(x);
 					}
 					else{
-						x1 = c;
-						roots.add(x1);
+						y = c;
+						roots.add(y);
 					}
 					
 				}while(c>value);
@@ -145,22 +148,25 @@ public class NumericalMethod {
 		double secant = 0;
 		roots = new ArrayList<Double>();
 		roots.add(x0);
+		double x, y;
+		x = x0;
+		y = x1;
 		
 		if(type == 1){
 			for(int i = 0; i<value; i++){
-				secant = x1 - ((function(x1)*(x1 - x0))/(function(x1)-function(x0)));
+				secant = y - ((function(y)*(y - x0))/(function(y)-function(x)));
 				roots.add(secant);
-				x0 = x1;
-				x1 = secant;
+				x = y;
+				y = secant;
 			}
 		} else if(type == 2){
 			for(int i = 0; secant<=value; i++){
-				secant = x1 - ((function(x1)*(x1 - x0))/(function(x1)-function(x0)));
+				secant = y - ((function(y)*(y - x))/(function(y)-function(x)));
 				roots.add(secant);
-				x0 = x1;
-				x1 = secant;
+				x = y;
+				y = secant;
 			}
-			secant = x1 - ((function(x1)*(x1 - x0))/(function(x1)-function(x0)));
+			secant = y - ((function(y)*(y - x))/(function(y)-function(x)));
 		}
 	
 		return roots;
@@ -202,5 +208,21 @@ public class NumericalMethod {
 			}
 		}
 		return answer;
+	}
+	
+	public ArrayList<Double> getPolyRoots(double value){
+
+		double c=0;
+		ArrayList<Double> polyRoots = new ArrayList<Double>();
+		System.out.println("X0:"+ x0 + " X1:"+ x1);
+		
+		for(double i = x0; i<=x1; i++){
+			c = function(i);
+			polyRoots.add(c);
+			
+			System.out.println("X:"+ i + " Y:"+ c);
+		}
+		
+		return polyRoots;
 	}
 }
